@@ -7,7 +7,6 @@ import { generateToken } from "../utils/generateToken.util.js";
 import { CustomRequest } from "../interfaces/index.js";
 
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  console.log("trigger");
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
