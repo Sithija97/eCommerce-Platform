@@ -5,18 +5,16 @@ import {
   PostForm,
   RegisterModal,
 } from "./components";
+import { RootState, useAppSelector } from "./store";
 import "./App.css";
-import { useState } from "react";
 
 const App = () => {
-  const [modalType, setModalType] = useState<string>("login");
+  const { modalType } = useAppSelector((state: RootState) => state.auth);
   return (
     <div>
       <Header />
-      {modalType === "login" && <LoginModal setModalType={setModalType} />}
-      {modalType === "register" && (
-        <RegisterModal setModalType={setModalType} />
-      )}
+      {modalType === "login" && <LoginModal />}
+      {modalType === "register" && <RegisterModal />}
       <BoardHeader />
       <PostForm />
       <div className="px-6 bg-dark text-text">
@@ -45,23 +43,17 @@ const App = () => {
               them, and how they feel like there's enormous room for
               improvement. (LEO satellite internet constellations), attracted a
               lot of excited talent, to achieve something transformational. What
-              other fields do you think there are/could be like this? I've heard
               a lot of people in advanced nuclear startups (both breeder
               reactors & fusion) talk about how SpaceX was an inspiration to
               them, and how they feel like there's enormous room for
-              improvement.LEO satellite (internet constellations), attracted a
+              improvement. (LEO satellite internet constellations), attracted a
               lot of excited talent, to achieve something transformational. What
-              other fields do you think there are/could be like this? I've heard
-              a lot of people in advanced nuclear startups (both breeder
-              reactors & fusion) talk about how SpaceX was an inspiration to
-              them, and how they feel like there's enormous room for
-              improvement. LEO satellite internet (constellations), attracted a
-              lot of excited talent, to achieve something transformational. What
-              other fields do you think there are/could be like this? I've heard
-              a lot of people in advanced nuclear startups (both breeder
-              reactors & fusion) talk about how SpaceX was an inspiration to
-              them, and how they feel like there's enormous room for
-              improvement.LEO satellite internet (constellations), attracted a
+              SpaceX, a mission-driven organization, came along and proved that
+              the problem was institutional rather than technological. They
+              built a technically conservative, minimum viable product (Falcon 9
+              v1.0/cargon dragon), rapidly iterated on it over the course of a
+              decade (creating whole new uses for the tech that had never been
+              done before, LEO satellite internet constellations), attracted a
               lot of excited talent, to achieve something transformational. What
               other fields do you think there are/could be like this? I've heard
               a lot of people in advanced nuclear startups (both breeder
@@ -69,72 +61,18 @@ const App = () => {
               them, and how they feel like there's enormous room for
               improvement. (LEO satellite internet constellations), attracted a
               lot of excited talent, to achieve something transformational. What
-              other fields do you think there are/could be like this? I've heard
-              a lot of people in advanced nuclear startups (both breeder)
-              reactors fields do you think there are/could be like this? I've
-              heard a lot of people in advanced nuclear startups (both) breeder
-              reactors fields do you think there are/could be like this? I've
-              heard a lot of people in advanced nuclear startups (both breeder)
-              reactors fields do you think there are/could be like this? I've
-              heard a lot of people in advanced nuclear startups (both breeder
-              reactors) lot of people in advanced nuclear startups (both breeder
-              reactors) lot of a lot lot of people in advanced nuclear startups
-              (both breeder reactors) lot of people in advanced nuclear startups
-              (both breeder reactors) lot of a lot For decades spaceflight was
-              so expensive that the market grew very slowly and there was low
-              levels of technical innovation. Then SpaceX, a mission-driven
-              organization, came along and proved that the problem was
-              institutional rather than technological. They built a technically
-              conservative, minimum viable product (Falcon 9 v1.0/cargon
-              dragon), rapidly iterated on it over the course of a decade
-              (creating whole new uses for the tech that had never been done
-              before, LEO satellite internet constellations), attracted a lot of
-              excited talent, to achieve something transformational. What other
-              fields do you think there are/could be like this? I've heard a lot
-              of people in advanced nuclear startups (both breeder reactors &
-              fusion) talk about how SpaceX was an inspiration to them, and how
-              they feel like there's enormous room for improvement. (LEO
-              satellite internet constellations), attracted a lot of excited
-              talent, to achieve something transformational. What other fields
-              do you think there are/could be like this? I've heard a lot of
-              people in advanced nuclear startups (both breeder reactors &
-              fusion) talk about how SpaceX was an inspiration to them, and how
-              they feel like there's enormous room for improvement.LEO satellite
-              (internet constellations), attracted a lot of excited talent, to
-              achieve something transformational. What other fields do you think
-              there are/could be like this? I've heard a lot of people in
-              advanced nuclear startups (both breeder reactors & fusion) talk
-              about how SpaceX was an inspiration to them, and how they feel
-              like there's enormous room for improvement. LEO satellite internet
-              (constellations), attracted a lot of excited talent, to achieve
-              something transformational.For decades spaceflight was so
-              expensive that the market grew very slowly and there was low
-              levels of technical innovation. Then SpaceX, a mission-driven
-              organization, came along and proved that the problem was
-              institutional rather than technological. They built a technically
-              conservative, minimum viable product (Falcon 9 v1.0/cargon
-              dragon), rapidly iterated on it over the course of a decade
-              (creating whole new uses for the tech that had never been done
-              before, LEO satellite internet constellations), attracted a lot of
-              excited talent, to achieve something transformational. What other
-              fields do you think there are/could be like this? I've heard a lot
-              of people in advanced nuclear startups (both breeder reactors &
-              fusion) talk about how SpaceX was an inspiration to them, and how
-              they feel like there's enormous room for improvement. (LEO
-              satellite internet constellations), attracted a lot of excited
-              talent, to achieve something transformational. What other fields
-              do you think there are/could be like this? I've heard a lot of
-              people in advanced nuclear startups (both breeder reactors &
-              fusion) talk about how SpaceX was an inspiration to them, and how
-              they feel like there's enormous room for improvement.LEO satellite
-              (internet constellations), attracted a lot of excited talent, to
-              achieve something transformational. What other fields do you think
-              there are/could be like this? I've heard a lot of people in
-              advanced nuclear startups (both breeder reactors & fusion) talk
-              about how SpaceX was an inspiration to them, and how they feel
-              like there's enormous room for improvement. LEO satellite internet
-              (constellations), attracted a lot of excited talent, to achieve
-              something transformational.
+              a lot of people in advanced nuclear startups (both breeder
+              reactors & fusion) talk about how SpaceX was an inspiration to
+              them, and how they feel like there's enormous room for
+              improvement. (LEO satellite internet constellations), attracted a
+              lot of excited talent, to achieve something transformational. What
+              SpaceX, a mission-driven organization, came along and proved that
+              the problem was institutional rather than technological. They
+              built a technically conservative, minimum viable product (Falcon 9
+              v1.0/cargon dragon), rapidly iterated on it over the course of a
+              decade (creating whole new uses for the tech that had never been
+              done before, LEO satellite internet constellations), attracted a
+              lot of excited talent, to achieve something transformational.
             </p>
           </div>
         </div>

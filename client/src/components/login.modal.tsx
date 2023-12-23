@@ -1,11 +1,8 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, TextInput } from ".";
-import { Dispatch, SetStateAction } from "react";
-
-interface IProps {
-  setModalType: Dispatch<SetStateAction<string>>;
-}
+import { RootState, useAppDispatch, useAppSelector } from "../store";
+import { setModalType } from "../store/auth/authSlice";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,7 +13,9 @@ const validationSchema = Yup.object().shape({
     .required("Password is required"),
 });
 
-export const LoginModal = ({ setModalType }: IProps) => {
+export const LoginModal = () => {
+  const dispatch = useAppDispatch();
+  const { show } = useAppSelector((state: RootState) => state.auth);
   const handleLogin = (values: { email: string; password: string }) => {
     console.log(values);
   };
@@ -33,12 +32,14 @@ export const LoginModal = ({ setModalType }: IProps) => {
   });
 
   const handleAuthModal = () => {
-    setModalType("register");
+    dispatch(setModalType("register"));
   };
+
+  const visibleClass = show !== false ? "block" : "hidden";
 
   return (
     <div
-      className="w-screen h-screen fixed top-0 left-0 z-20 flex"
+      className={`w-screen h-screen fixed top-0 left-0 z-20 flex ${visibleClass}`}
       style={{ backgroundColor: "rgba(0,0,0,.6)" }}
     >
       <div className="border border-dark-brightest_gray w-3/4 sm:w-1/2 md:w-1/4 bg-dark p-5 text-text mx-auto self-center rounded-lg">

@@ -6,9 +6,13 @@ import { HiOutlineUser } from "react-icons/hi2";
 import { MdOutlineLogin } from "react-icons/md";
 import { Button } from "./button";
 import { useState, useEffect, useRef } from "react";
+import { setModalType, setShow } from "../store/auth/authSlice";
+import { useAppDispatch } from "../store";
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
   const userDropdownRef = useRef<HTMLButtonElement>(null);
+
   const [userDropdownVisibilityClass, setUserDropdownVisibilityClass] =
     useState<string>("hidden");
 
@@ -33,6 +37,16 @@ export const Header = () => {
       window.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const handleLoginModal = () => {
+    dispatch(setShow(true));
+    dispatch(setModalType("login"));
+  };
+
+  const handleRegisterModal = () => {
+    dispatch(setShow(true));
+    dispatch(setModalType("register"));
+  };
 
   return (
     <header className="w-full bg-dark p-2">
@@ -61,8 +75,18 @@ export const Header = () => {
         </button>
 
         <div className="mx-2 hidden sm:block">
-          <Button styles="ml-2 mr-1" label="Log In" />
-          <Button filled label="Sign Up" />
+          <Button
+            styles="ml-2 mr-1"
+            label="Log In"
+            type="button"
+            onClick={handleLoginModal}
+          />
+          <Button
+            filled
+            label="Sign Up"
+            type="button"
+            onClick={handleRegisterModal}
+          />
         </div>
 
         <button
@@ -83,11 +107,11 @@ export const Header = () => {
         </button>
 
         <div
-          className={`absolute rounded-md right-0 top-8 bg-dark border border-gray-700 text-text z-10 overflow-hidden ${userDropdownVisibilityClass}`}
+          className={`absolute rounded-md right-0 top-10 bg-dark border border-gray-700 text-text z-10 overflow-hidden ${userDropdownVisibilityClass}`}
         >
           <button
             className="flex items-center w-50 py-2 px-3 hover:bg-gray-300 hover:text-black text-sm"
-            onClick={() => console.log("login modal")}
+            onClick={handleLoginModal}
           >
             <MdOutlineLogin className="w-5 h-5 mr-2" />
             Log In / Sign Up
